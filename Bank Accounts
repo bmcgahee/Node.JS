@@ -1,0 +1,77 @@
+Author: Ben McGahee
+Title:  Bank Accounts
+Date: 11/19/2015
+Purpose:  This program is to simulate a bank by letting customers create their new bank accounts, deposit money into their 
+bank accounts, withdraw money from their bank accounts, and check their account balances.  
+
+//accounts array
+var accounts = [];
+
+//creates a new account
+function createAccount(account){
+	accounts.push(account);
+	return account;
+}
+
+//gets the account provided its username
+function getAccount(username){
+	var matchAccount;
+	accounts.forEach(function (account) {
+		if(account.username === username){
+			matchAccount = account;
+		}
+
+	});
+
+	return matchedAccount;
+}
+
+//deposits money into the account
+function deposit(account, amount){
+	account.balance += amount;
+}
+
+//withdraws money from the account
+function withdraw(account, amount){
+	account.balance -= amount;
+}
+
+//gets the account balance
+function getBalance(account){
+	return account.balance;
+}
+
+//creates two new accounts
+var bensAccount = createAccount({
+	username: 'bmcgahee',
+	balance: 0
+});
+
+var ricksAccount = createAccount({
+	username: 'rmcgahee4',
+	balance: 2000
+});
+
+//test data
+//checks to see if deposit, withdraw, and getAccount functions work properly
+
+//deposits $500 into Ben's bank account and gets his current balance.
+deposit(bensAccount, 500);
+console.log(getBalance(bensAccount));
+
+//withdraws $10 from Ben's bank account and gets his current balance.
+withdraw(bensAccount, 10);
+console.log(getBalance(bensAccount));
+
+//checks to see if account exists with the username 'bmcgahee' and gets Ben's account balance.
+var existingAccount = getAccount('bmcgahee');
+console.log(getBalance(bensAccount));
+
+//prints out all of the bank accounts in the accounts array.
+console.log(accounts);
+
+//checks to see if account exists with the username 'rmcgahee4' and gets Rick's account balance.
+var existingRicksAccount = getAccount('rmcgahee4');
+console.log(existingRicksAccount);
+
+

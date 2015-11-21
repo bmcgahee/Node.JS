@@ -1,0 +1,80 @@
+Author:  Ben McGahee
+Title:  Car Accounts
+Date: 11/19/2015
+Purpose:  This program allows you to create a car account, get the sale price of a car, determine the value of the car
+after owning it for a particular number of years, and tells you what mileage to get your next oil change.  
+
+//Initialize the empty cars array.
+var cars = [];
+
+//createCar function creates a car account with make, model, year, mileage, and price
+function createCar(car){
+	cars.push(car);
+	return car;
+}
+
+//carValue function returns the value of the car after a certain number of years
+function carValue(car, years){
+	for(year = 1; year <= years; year++){
+		value = car.price * Math.pow(0.8, year);
+	    roundValue = Math.round(value);
+	    result = 'The value of the ' + car.make + ' after ' + year + ' years is ' + '$' + roundValue + '.';
+	    console.log(result);
+	}
+}
+
+//getPrice function tells the sale price of the car when inputting the make and model.
+function getPrice(make, model){
+	var currentPrice;
+	cars.forEach(function (car){
+		if(car.make === make && car.model === model){
+			currentPrice = car.price;
+		}
+	});
+	result = 'The price of the ' + make + ' is ' + '$' + currentPrice + '.';
+	return result;
+}
+
+//getOilChange function tells when to get the next oil change.  
+function getOilChange(car){
+	oilChange = car.mileage + 3000;
+	result = 'Your car needs an oil change when your odometer reading says ' + oilChange + ' miles.';
+	return result;
+}
+
+//create car account called bensCar
+var bensCar = createCar({
+	make: 'Chevrolet',
+	model: 'Cruze',
+	year: 2013,
+	mileage: 1249,
+	price: 13500
+});
+
+//create car account called ricksCar
+var ricksCar = createCar({
+	make: 'Nissan',
+	model: 'Murano',
+	year: 2011,
+	mileage: 372,
+	price: 30000
+});
+
+//print out the car accounts from the cars array
+console.log(cars);
+
+//returns the value of Ben's car after owning it for 5 years
+carValue(bensCar, 5);
+
+//returns the value of Rick's car after owning it for 5 years
+carValue(ricksCar, 5);
+
+
+
+
+
+
+
+
+
+

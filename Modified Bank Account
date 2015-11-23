@@ -1,0 +1,82 @@
+Author: Ben McGahee
+Title:  Modified Bank Account
+Date:  11/22/2015
+Purpose:  This program is the modified version of the Bank Account program that simulates a real bank account, 
+which allows you to create an account, deposit and withdraw money, and check the account information and balance.  
+The deposit and withdraw methods contain input validation to make sure numerical values are entered to either
+deposit or withdraw from the account.  If no numerical values are entered, then the account holder will receive an
+error message.
+
+//accounts array
+var accounts = [];
+
+//creates a new account
+function createAccount(account){
+	accounts.push(account);
+	return account;
+}
+
+//gets the account provided its username
+function getAccount(username){
+	var matchAccount;
+	var i = 0;
+	while(i < accounts.length){
+		if(accounts[i].username === username)
+			matchedAccount = accounts[i];
+		i++;
+	}
+
+	return matchAccount;
+}
+
+//deposits money into the account
+//checks to see if the user entered a numerical value for the deposit
+//if not then the account holder receives an error message that the deposit failed
+function deposit(account, amount){
+	if(typeof amount === 'number')
+		account.balance += amount;
+	else 
+		console.log('Sorry, the deposit failed.  Please enter a number for the deposit amount.');
+}
+
+//withdraws money from the account
+//checks to see if the user entered a numerical value for the withdrawal
+//if not then the account holder receives an error message that the withdrawal failed
+function withdraw(account, amount){
+	if(typeof amount === 'number')
+		account.balance -= amount;
+	else
+		console.log('Sorry, the withdrawal failed.  Please enter a number for the withdrawal amount.');
+}
+
+//gets the account balance using a closure (function within a function)
+function createBalanceGetter(account){
+	return function () {
+		return account.balance;
+	}
+}
+
+
+//create Ben's account
+var bensAccount = createAccount({
+	username: 'bmcgahee', 
+	balance: 0});
+
+//deposit $500 and withdraw $20 from Ben's account
+deposit(bensAccount, 500);
+withdraw(bensAccount, 20);
+
+//test deposit and withdrawal with strings, should get an error message to use numerical values
+deposit(bensAccount, 'one hundred');
+withdraw(bensAccount, 'eighty');
+
+//gets Ben's account information
+var getBensAccount = getAccount('bmcgahee');
+console.log(getBensAccount);
+
+//gets Ben's account balance
+getBenBalance = createBalanceGetter(bensAccount);
+console.log(getBenBalance());
+
+
+
